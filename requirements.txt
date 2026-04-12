@@ -1,5 +1,1 @@
-os
 requests
-sys
-re
-textwrap
