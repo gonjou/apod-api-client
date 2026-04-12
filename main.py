@@ -3,9 +3,6 @@ from formatter import format_apod
 import sys
 import re
 
-# Fun-fact: Today, 2026-04-06, NASA shared a video of Artemis II trayectory, a mission that 
-# will serve as a test for future missions that will land on the moon.
-
 def main():
 
     client = APODClient()
