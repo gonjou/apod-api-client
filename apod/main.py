@@ -1,5 +1,5 @@
-from client import APODClient
-from formatter import format_apod
+from .client import APODClient
+from .formatter import format_apod
 import sys
 import re
 from datetime import date
