@@ -49,9 +49,9 @@ def _validate_date(apod_date):
     max_date = date.today()
 
     if input_date < min_date:
-        raise ValueError("Invalid date.")
+        raise ValueError(f"Date cannot be before 1995-06-16. Got: {apod_date}")
     if input_date > max_date:
-        raise ValueError("Invalid date.")
+        raise ValueError(f"Want to travel to the future? Date cannot be after {date.today()}. Got: {apod_date}")
     
     return apod_date 
 
