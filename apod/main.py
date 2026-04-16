@@ -23,6 +23,8 @@ def _process_arguments(client, args):
         
     if len(args) < 2:
         return format_apod(client.get_today())
+    elif len(args) > 3:
+        raise ValueError("Too many arguments.")
         
     command = args[1]
     if command == "get_by_date":
