@@ -25,8 +25,6 @@ class APODClient:
             raise Exception("An HTTP Error occurred.") from http_err
         except requests.exceptions.RequestException as err:
             raise Exception("A request exception occurred.") from err
-        except requests.exceptions.ReadTimeout as time_err:
-            raise Exception("The request timed out.") from time_err
         else:
             return response.json()
         
