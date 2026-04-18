@@ -42,12 +42,12 @@ class TestMainValidation(unittest.TestCase):
             client = APODClient()
             _process_arguments(client, ["apod.main", "get_by_date", "2000-08-08", "another_argument"])
 
-    def test_process_rejects_2_args(self):
+    def test_process_arguments_rejects_2_args(self):
         with self.assertRaises(ValueError):
             client = APODClient()
             _process_arguments(client, [ "apod.main", "get_random"])
     
-    def test_process_accepts_valid_arguments(self):
+    def test_process_arguments_accepts_valid_arguments(self):
         client = Mock(spec=APODClient)
         client.get_by_date.return_value = {
             "title": "Test Example",
