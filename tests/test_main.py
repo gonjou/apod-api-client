@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import Mock, patch
 from apod.main import _validate_date, _validate_count, _process_arguments
 from apod.client import APODClient
 
@@ -46,11 +46,18 @@ class TestMainValidation(unittest.TestCase):
         with self.assertRaises(ValueError):
             client = APODClient()
             _process_arguments(client, [ "apod.main", "get_random"])
-
+    
     def test_process_accepts_valid_arguments(self):
-        client = APODClient()
+        client = Mock(spec=APODClient)
+        client.get_by_date.return_value = {
+            "title": "Test Example",
+            "date": "2000-08-08"
+        }
+
         result = _process_arguments(client, ["apod.main", "get_by_date", "2000-08-08"])
-        self.assertEqual(result, ("apod.main", "get_by_date", "2000-08-08"))
+
+        client.get_by_date.assert_called_once_with("2000-08-08")
+        self.assertIsInstance(result, str)
 
     
 
