@@ -21,8 +21,10 @@ def main():
     
 def _process_arguments(client, args):
         
-    if len(args) < 2:
+    if len(args) == 1:
         return format_apod(client.get_today())
+    elif len(args) == 2:
+        raise ValueError("Missing arguments.")
     elif len(args) > 3:
         raise ValueError("Too many arguments.")
         
