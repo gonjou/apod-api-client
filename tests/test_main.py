@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import patch, MagicMock
 from apod.main import _validate_date, _validate_count, _process_arguments
+from apod.client import APODClient
 
 class TestMainValidation(unittest.TestCase):
 
@@ -35,4 +36,21 @@ class TestMainValidation(unittest.TestCase):
     def test_validate_count_accepts_valid_count(self):
         result = _validate_count("5")
         self.assertEqual(result, 5)
+
+    def test_process_arguments_rejects_over_3_args(self):
+        with self.assertRaises(ValueError):
+            client = APODClient()
+            _process_arguments(client, ["apod.main", "get_by_date", "2000-08-08", "another_argument"])
+
+    def test_process_rejects_2_args(self):
+        with self.assertRaises(ValueError):
+            client = APODClient()
+            _process_arguments(client, [ "apod.main", "get_random"])
+
+    def test_process_accepts_valid_arguments(self):
+        client = APODClient()
+        result = _process_arguments(client, ["apod.main", "get_by_date", "2000-08-08"])
+        self.assertEqual(result, ("apod.main", "get_by_date", "2000-08-08"))
+
+    
 
