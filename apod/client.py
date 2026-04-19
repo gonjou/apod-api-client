@@ -24,11 +24,12 @@ class APODClient:
         self.api_key = api_key
         self.timeout = timeout
 
-        """Creating a session"""
+        # Creating a session.
         self.session = requests.Session() 
 
     def _get(self, params):
-        """Sends request. 
+        """
+        Make a get request to the NASA APOD API. 
 
         Args:
         params = query parameters, such as {"date": "2026-04-16"}
@@ -37,7 +38,7 @@ class APODClient:
         Parsed JSON response from the API
 
         Raises:
-
+        Exception: If the request fails, times out or returns HTTPError
         """
         
         params = params.copy()
@@ -53,16 +54,28 @@ class APODClient:
         else:
             return response.json()
         
-    # Get today's picture.
+
     def get_today(self):
+        """Return today's Astronomical Picture of the day."""
         return self._get({})
 
-    # Get picture by date.
     def get_by_date(self, date):
+        """
+        Return the Astronomical Picture of the Day of a specific date.
+        
+        Args:
+        date = date in YYYY-MM-DD format, Example: 2026-04-19"
+        """
         return self._get({"date": date})
 
-    # Get random.
     def get_random(self, count):
+        """
+        Return multiple random pictures.
+
+        Args:
+        count: integer that represents the amount of pictures to get. Maximum 10 APODs
+        
+        """
         return self._get({"count": count})
         
 

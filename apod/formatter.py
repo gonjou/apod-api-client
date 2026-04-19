@@ -1,5 +1,6 @@
 import textwrap
 
+# Format multiple astronomical pictures of the day.
 def format_apod(data):
     if isinstance(data, list):
         results = []
@@ -9,7 +10,7 @@ def format_apod(data):
     else:
         return format_single_apod(data)
 
-
+# Format one APOD.
 def format_single_apod(data):
     title = data.get("title", "N/A")
     date = data.get("date", "N/A")

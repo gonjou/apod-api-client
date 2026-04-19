@@ -19,6 +19,7 @@ def main():
 
     print(output)
     
+# Parse and execute the command-line arguments (sys.argv) as commands.
 def _process_arguments(client, args):
         
     if len(args) == 1:
@@ -38,9 +39,10 @@ def _process_arguments(client, args):
         return format_apod(client.get_random(count))
         
 
-
+# Validation the apod_date parameter in get_date()
 def _validate_date(apod_date):
     validation = re.search(r"^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$", apod_date)
+
     if not validation:
         raise ValueError("Invalid date format. Use YYYY-MM-DD. Example: 2026-04-12")
     
@@ -59,7 +61,9 @@ def _validate_date(apod_date):
     
     return apod_date 
 
+# Validation for the count parameter in get_random()
 def _validate_count(count):
+
     try:
         count = int(count)
     except ValueError:
