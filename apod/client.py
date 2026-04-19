@@ -4,7 +4,7 @@ from . import config
 
 class APODClient:
     """
-    Client that fetchs NASA's Astronomical Picture of the Day.
+    Client that fetches NASA's Astronomical Picture of the Day.
     It handles requests with automatic session management and error handling.
 
     """
