@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
 from apod.main import _validate_date, _validate_count, _process_arguments
 from apod.client import APODClient
 
